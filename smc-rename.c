@@ -45,6 +45,26 @@ int main(int argc, char *argv[])
 					byte += 0x20;
 				} else if (byte >= '0' && byte <= '9') {
 					/* Leave numbers alone */
+				} else if (byte == '&') {
+					/* Spell out ampersands */
+
+					if (lastByte == '-') {
+						outputFilename[outputByteNumber] = 'a';
+						outputByteNumber++;
+						outputFilename[outputByteNumber] = 'n';
+						outputByteNumber++;
+						byte = 'd';
+					} else {
+						outputFilename[outputByteNumber] = '-';
+						outputByteNumber++;
+						outputFilename[outputByteNumber] = 'a';
+						outputByteNumber++;
+						outputFilename[outputByteNumber] = 'n';
+						outputByteNumber++;
+						outputFilename[outputByteNumber] = 'd';
+						outputByteNumber++;
+						byte = '-';
+					}
 				} else {
 					/* Convert spaces (and everything else) to dashes */
 					byte = '-';
