@@ -4,7 +4,6 @@
  *
  * Usage: "bin-rename *.bin *.BIN"
  *
- * Based heavily on Bart Trzynadlowski's GROM Version 0.75
  * Public domain
  */
 
