@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
 	FILE      *outputFilePointer;
 	char      outputFilename[40] = "out.bin\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"; /* Up to 40 chars: 32 for the filename, 1 space, 3 for the regions, 1 dot, 3 for the extension. */
 	int16_t   byte;
+	int16_t   lastByte;
 	int16_t   byteNumber;
 
 	if (argc == 1) {
@@ -36,7 +37,13 @@ int main(int argc, char *argv[])
 
 			for (byteNumber = 0; byteNumber < 32; byteNumber++) {
 				byte = getc(inputFilePointer);
+
+				if (byte == ' ' && lastByte == ' ') {
+					continue;
+				}
+
 				outputFilename[byteNumber] = byte;
+				lastByte = byte;
 			}
 
 			fclose(inputFilePointer);
