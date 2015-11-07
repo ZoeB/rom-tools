@@ -9,15 +9,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define BLOCK_SIZE 16384
-#define HALF_BLOCK_SIZE 8192
+#define KiB 1024
 
 int main(int argc, char *argv[])
 {
 	FILE      *inputFilePointer;
 	FILE      *outputFilePointer;
-	uint8_t   inputBlock[BLOCK_SIZE];
-	uint8_t   outputBlock[BLOCK_SIZE];
+	uint8_t   inputBlock[16 * KiB];
+	uint8_t   outputBlock[16 * KiB];
 	int16_t   byte;
 	int16_t   byteNumber;
 
@@ -40,14 +39,14 @@ int main(int argc, char *argv[])
 				byte = getc(inputFilePointer);
 				inputBlock[byteNumber] = byte;
 
-				if (byteNumber == BLOCK_SIZE - 1) {
+				if (byteNumber == 16 * KiB - 1) {
 					/* The 16KiB block's full.  Convert it. */
-					for (byteNumber = 0; byteNumber < HALF_BLOCK_SIZE; byteNumber++) {
-						outputBlock[byteNumber * 2] = inputBlock[byteNumber + HALF_BLOCK_SIZE];
+					for (byteNumber = 0; byteNumber < 8 * KiB; byteNumber++) {
+						outputBlock[byteNumber * 2] = inputBlock[byteNumber + 8 * KiB];
 						outputBlock[byteNumber * 2 + 1] = inputBlock[byteNumber];
 					}
 
-					for (byteNumber = 0; byteNumber < BLOCK_SIZE; byteNumber++) {
+					for (byteNumber = 0; byteNumber < 16 * KiB; byteNumber++) {
 						putc(outputBlock[byteNumber], outputFilePointer);
 					}
 
