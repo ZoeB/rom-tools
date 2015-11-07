@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
 			byteNumber = 0;
 
 			do {
+				/* Read a byte in */
 				byte = getc(inputFilePointer);
 				inputBlock[byteNumber] = byte;
 
@@ -46,6 +47,7 @@ int main(int argc, char *argv[])
 						outputBlock[byteNumber * 2 + 1] = inputBlock[byteNumber];
 					}
 
+					/* Write a block out */
 					for (byteNumber = 0; byteNumber < 16 * KB; byteNumber++) {
 						putc(outputBlock[byteNumber], outputFilePointer);
 					}
