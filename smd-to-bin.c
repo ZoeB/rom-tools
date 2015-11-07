@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
 		while (--argc > 0) {
 			/* Loop through each file */
 			inputFilePointer = fopen(*++argv, "r");
+			fseek(inputFilePointer, 512, SEEK_SET);
 			outputFilePointer = fopen("out.bin", "w");
 
 			if (inputFilePointer == NULL) {
