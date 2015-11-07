@@ -13,7 +13,7 @@
 int main(int argc, char *argv[])
 {
 	FILE      *inputFilePointer;
-	char      outputFilename[36] = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
+	char      outputFilename[26] = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
 	int16_t   byte;
 	int16_t   lastByte;
 	int8_t    inputByteNumber;
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 			outputByteNumber = 0;
 			fseek(inputFilePointer, 0x7FC0, SEEK_SET);
 
-			for (inputByteNumber = 0; inputByteNumber < 32; inputByteNumber++) {
+			for (inputByteNumber = 0; inputByteNumber < 22; inputByteNumber++) {
 				byte = getc(inputFilePointer);
 
 				if (byte == '\0') {
@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
 			outputFilename[outputByteNumber] = 'c';
 			outputByteNumber++;
 
-			while (outputByteNumber < 36) {
+			while (outputByteNumber < 26) {
 				outputFilename[outputByteNumber] = '\0';
 				outputByteNumber++;
 			}
