@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define BLOCK_SIZE 16384
 #define HALF_BLOCK_SIZE 8192
@@ -8,12 +9,10 @@ int main(int argc, char *argv[])
 {
 	FILE      *inputFilePointer;
 	FILE      *outputFilePointer;
-	char      outputFilename[40] = "out.bin\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"; /* Up to 40 chars: 32 for the filename, 1 space, 3 for the regions, 1 dot, 3 for the extension. */
 	uint8_t   inputBlock[BLOCK_SIZE];
 	uint8_t   outputBlock[BLOCK_SIZE];
 	int16_t   byte;
 	int16_t   byteNumber;
-	uint8_t   writing = 0;
 
 	if (argc == 1) {
 		return 0; /* Only work with named files, not stdin */
@@ -22,6 +21,7 @@ int main(int argc, char *argv[])
 			/* Loop through each file */
 			inputFilePointer = fopen(*++argv, "rb");
 			fseek(inputFilePointer, 512, SEEK_SET);
+			outputFilePointer = fopen(strcat(strtok(*argv, "."), ".bin"), "wb");
 
 			if (inputFilePointer == NULL) {
 				continue;
@@ -30,7 +30,6 @@ int main(int argc, char *argv[])
 			byteNumber = 0;
 
 			do {
-				/* Read a byte in */
 				byte = getc(inputFilePointer);
 				inputBlock[byteNumber] = byte;
 
@@ -41,12 +40,6 @@ int main(int argc, char *argv[])
 						outputBlock[byteNumber * 2 + 1] = inputBlock[byteNumber];
 					}
 
-					if (writing == 0) {
-						writing = 1;
-						outputFilePointer = fopen(outputFilename, "wb");
-					}
-
-					/* Write a block out */
 					for (byteNumber = 0; byteNumber < BLOCK_SIZE; byteNumber++) {
 						putc(outputBlock[byteNumber], outputFilePointer);
 					}
