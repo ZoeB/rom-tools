@@ -70,11 +70,11 @@ int main(int argc, char *argv[])
 				} else {
 					/* Convert spaces (and everything else) to dashes */
 					byte = '-';
-				}
 
-				if (byte == '-' && lastByte == '-') {
-					/* Ignore multiple spaces in a row */
-					continue;
+					if (lastByte == '-') {
+						/* Ignore multiple spaces in a row */
+						continue;
+					}
 				}
 
 				outputFilename[outputByteNumber] = byte;
