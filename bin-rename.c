@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 {
 	FILE      *inputFilePointer;
 	FILE      *outputFilePointer;
-	char      outputFilename[40] = "out.bin\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"; /* Up to 40 chars: 32 for the filename, 1 space, 3 for the regions, 1 dot, 3 for the extension. */
+	char      outputFilename[36] = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"; /* Up to 36 chars: 32 for the filename, 1 dot, 3 for the extension. */
 	int16_t   byte;
 	int16_t   lastByte;
 	int8_t    inputByteNumber;
