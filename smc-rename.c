@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
 			}
 
 			fclose(inputFilePointer);
-			/*rename (*argv, outputFilename);*/
+			rename (*argv, outputFilename);
 			printf("%s renamed to %s\n", *argv, outputFilename);
 		}
 	}
