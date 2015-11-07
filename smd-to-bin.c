@@ -9,14 +9,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define KiB 1024
+#define KB 1024
 
 int main(int argc, char *argv[])
 {
 	FILE      *inputFilePointer;
 	FILE      *outputFilePointer;
-	uint8_t   inputBlock[16 * KiB];
-	uint8_t   outputBlock[16 * KiB];
+	uint8_t   inputBlock[16 * KB];
+	uint8_t   outputBlock[16 * KB];
 	int16_t   byte;
 	int16_t   byteNumber;
 
@@ -39,14 +39,14 @@ int main(int argc, char *argv[])
 				byte = getc(inputFilePointer);
 				inputBlock[byteNumber] = byte;
 
-				if (byteNumber == 16 * KiB - 1) {
-					/* The 16KiB block's full.  Convert it. */
-					for (byteNumber = 0; byteNumber < 8 * KiB; byteNumber++) {
-						outputBlock[byteNumber * 2] = inputBlock[byteNumber + 8 * KiB];
+				if (byteNumber == 16 * KB - 1) {
+					/* The 16KB block's full.  Convert it. */
+					for (byteNumber = 0; byteNumber < 8 * KB; byteNumber++) {
+						outputBlock[byteNumber * 2] = inputBlock[byteNumber + 8 * KB];
 						outputBlock[byteNumber * 2 + 1] = inputBlock[byteNumber];
 					}
 
-					for (byteNumber = 0; byteNumber < 16 * KiB; byteNumber++) {
+					for (byteNumber = 0; byteNumber < 16 * KB; byteNumber++) {
 						putc(outputBlock[byteNumber], outputFilePointer);
 					}
 
