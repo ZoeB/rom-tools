@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 
 			fclose(inputFilePointer);
 			rename (*argv, outputFilename);
-			putc('\n', stdout);
+			printf("%s renamed to %s\n", *argv, outputFilename);
 		}
 	}
 
