@@ -29,14 +29,15 @@ int main(int argc, char *argv[])
 		while (--argc > 0) {
 			/* Loop through each file */
 			inputFilePointer = fopen(*++argv, "rb");
-			fseek(inputFilePointer, 512, SEEK_SET);
-			outputFilePointer = fopen(strcat(strtok(*argv, "."), ".bin"), "wb");
 
 			if (inputFilePointer == NULL) {
 				continue;
 			}
 
+			fseek(inputFilePointer, 512, SEEK_SET);
+			outputFilePointer = fopen(strcat(strtok(*argv, "."), ".bin"), "wb");
 			byteNumber = 0;
+			printf("Converting %s ", *argv);
 
 			do {
 				/* Read a byte in */
