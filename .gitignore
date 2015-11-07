@@ -1,4 +1,6 @@
 *.bin
+*.gb
 *.smd
 bin-rename
+gb-rename
 smd-to-bin
