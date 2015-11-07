@@ -55,6 +55,11 @@ int main(int argc, char *argv[])
 				lastByte = byte;
 			}
 
+			if (byte == '-') {
+				/* Ditch any trailing space */
+				outputByteNumber--;
+			}
+
 			outputFilename[outputByteNumber] = '.';
 			outputByteNumber++;
 			outputFilename[outputByteNumber] = 'b';
