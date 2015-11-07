@@ -40,13 +40,14 @@ int main(int argc, char *argv[])
 					break;
 				}
 
-				if (byte == ' ') {
-					byte = '-';
-				}
-
 				if (byte >= 'A' && byte <= 'Z') {
 					/* Make names lowercase */
 					byte += 0x20;
+				} else if (byte == ' ') {
+					/* Convert spaces to dashes */
+					byte = '-';
+				} else if (byte >= '0' && byte <= '9') {
+					/* Leave numbers alone */
 				}
 
 				if (byte == '-' && lastByte == '-') {
