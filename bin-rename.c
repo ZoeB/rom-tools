@@ -10,12 +10,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define KB 1024
-
 int main(int argc, char *argv[])
 {
 	FILE      *inputFilePointer;
-	FILE      *outputFilePointer;
 	char      outputFilename[36] = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
 	int16_t   byte;
 	int16_t   lastByte;
