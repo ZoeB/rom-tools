@@ -32,8 +32,12 @@ int main(int argc, char *argv[])
 				continue;
 			}
 
-			fseek(inputFilePointer, 512, SEEK_SET);
-			byteNumber = 0;
+			fseek(inputFilePointer, 0x150, SEEK_SET);
+
+			for (byteNumber = 0; byteNumber < 32; byteNumber++) {
+				byte = getc(inputFilePointer);
+				outputFilename[byteNumber] = byte;
+			}
 
 			fclose(inputFilePointer);
 			rename (*argv, outputFilename);
