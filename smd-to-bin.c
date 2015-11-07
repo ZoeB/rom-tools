@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
 	FILE      *outputFilePointer;
 	uint8_t   inputBlock[16 * KB];
 	uint8_t   outputBlock[16 * KB];
+	uint8_t   blockNumber = 0;
 	int16_t   byte;
 	int16_t   byteNumber;
 
@@ -36,8 +37,8 @@ int main(int argc, char *argv[])
 
 			fseek(inputFilePointer, 512, SEEK_SET);
 			outputFilePointer = fopen(strcat(strtok(*argv, "."), ".bin"), "wb");
+			blockNumber = 0;
 			byteNumber = 0;
-			printf("Converting %s ", *argv);
 
 			do {
 				/* Read a byte in */
@@ -56,8 +57,8 @@ int main(int argc, char *argv[])
 						putc(outputBlock[byteNumber], outputFilePointer);
 					}
 
+					blockNumber++;
 					byteNumber = 0;
-					putc('.', stdout);
 				} else {
 					byteNumber++;
 				}
@@ -65,7 +66,7 @@ int main(int argc, char *argv[])
 
 			fclose(inputFilePointer);
 			fclose(outputFilePointer);
-			putc('\n', stdout);
+			printf("%s converted (%d 16KB blocks)\n", *argv, blockNumber);
 		}
 	}
 
