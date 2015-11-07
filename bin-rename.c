@@ -59,6 +59,20 @@ int main(int argc, char *argv[])
 				lastByte = byte;
 			}
 
+			outputFilename[outputByteNumber] = '.';
+			outputByteNumber++;
+			outputFilename[outputByteNumber] = 'b';
+			outputByteNumber++;
+			outputFilename[outputByteNumber] = 'i';
+			outputByteNumber++;
+			outputFilename[outputByteNumber] = 'n';
+			outputByteNumber++;
+
+			while (outputByteNumber < 36) {
+				outputFilename[outputByteNumber] = '\0';
+				outputByteNumber++;
+			}
+
 			fclose(inputFilePointer);
 			rename (*argv, outputFilename);
 			printf("%s renamed to %s\n", *argv, outputFilename);
