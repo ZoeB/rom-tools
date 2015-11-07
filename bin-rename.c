@@ -40,7 +40,17 @@ int main(int argc, char *argv[])
 			for (inputByteNumber = 0; inputByteNumber < 32; inputByteNumber++) {
 				byte = getc(inputFilePointer);
 
-				if (byte == ' ' && lastByte == ' ') {
+				if (byte == ' ') {
+					byte = '-';
+				}
+
+				if (byte >= 'A' && byte <= 'Z') {
+					/* Make names lowercase */
+					byte += 0x20;
+				}
+
+				if (byte == '-' && lastByte == '-') {
+					/* Ignore multiple spaces in a row */
 					continue;
 				}
 
