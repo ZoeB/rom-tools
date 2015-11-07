@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 				byte = getc(inputFilePointer);
 				inputBlock[byteNumber] = byte;
 
-				if (byteNumber == BLOCK_SIZE) {
+				if (byteNumber == BLOCK_SIZE - 1) {
 					/* The 16KiB block's full.  Convert it. */
 					for (byteNumber = 0; byteNumber < HALF_BLOCK_SIZE; byteNumber++) {
 						outputBlock[byteNumber * 2] = inputBlock[byteNumber + HALF_BLOCK_SIZE];
