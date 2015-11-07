@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define BLOCK_SIZE 16384
 #define HALF_BLOCK_SIZE 8192
@@ -18,9 +19,9 @@ int main(int argc, char *argv[])
 	} else {
 		while (--argc > 0) {
 			/* Loop through each file */
-			inputFilePointer = fopen(*++argv, "r");
+			inputFilePointer = fopen(*++argv, "rb");
 			fseek(inputFilePointer, 512, SEEK_SET);
-			outputFilePointer = fopen("out.bin", "w");
+			outputFilePointer = fopen(strcat(strtok(*argv, "."), ".bin"), "wb");
 
 			if (inputFilePointer == NULL) {
 				continue;
