@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 				}
 
 				if (byte >= 'A' && byte <= 'Z') {
-					/* Make names lowercase */
+					/* Make uppercase letters lowercase */
 					byte += 0x20;
 				} else if (byte >= 'a' && byte <= 'z') {
 					/* Leave lowercase letters alone */
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 					byte = '-';
 
 					if (lastByte == '-') {
-						/* Ignore multiple spaces in a row */
+						/* Ignore multiple dashes in a row */
 						continue;
 					}
 				}
@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
 			}
 
 			if (byte == '-') {
-				/* Ditch any trailing space */
+				/* Ditch any trailing dash */
 				outputByteNumber--;
 			}
 
