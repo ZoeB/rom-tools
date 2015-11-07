@@ -1,6 +1,9 @@
 /*
  * Mega Drive / Genesis SMD to ROM converter
  * by Zoe Blade, 2015
+ *
+ * Usage: "smd-to-bin *.smd *.SMD"
+ *
  * Based heavily on Bart Trzynadlowski's GROM Version 0.75
  * Public domain
  */
