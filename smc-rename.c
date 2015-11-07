@@ -43,11 +43,11 @@ int main(int argc, char *argv[])
 				if (byte >= 'A' && byte <= 'Z') {
 					/* Make names lowercase */
 					byte += 0x20;
-				} else if (byte == ' ') {
-					/* Convert spaces to dashes */
-					byte = '-';
 				} else if (byte >= '0' && byte <= '9') {
 					/* Leave numbers alone */
+				} else {
+					/* Convert spaces (and everything else) to dashes */
+					byte = '-';
 				}
 
 				if (byte == '-' && lastByte == '-') {
