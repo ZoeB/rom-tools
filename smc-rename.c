@@ -43,6 +43,8 @@ int main(int argc, char *argv[])
 				if (byte >= 'A' && byte <= 'Z') {
 					/* Make names lowercase */
 					byte += 0x20;
+				} else if (byte >= 'a' && byte <= 'z') {
+					/* Leave lowercase letters alone */
 				} else if (byte >= '0' && byte <= '9') {
 					/* Leave numbers alone */
 				} else if (byte == '&') {
