@@ -20,7 +20,8 @@ int main(int argc, char *argv[])
 	char      outputFilename[40] = "out.bin\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"; /* Up to 40 chars: 32 for the filename, 1 space, 3 for the regions, 1 dot, 3 for the extension. */
 	int16_t   byte;
 	int16_t   lastByte;
-	int16_t   byteNumber;
+	int8_t    inputByteNumber;
+	int8_t    outputByteNumber;
 
 	if (argc == 1) {
 		return 0; /* Only work with named files, not stdin */
@@ -33,16 +34,18 @@ int main(int argc, char *argv[])
 				continue;
 			}
 
+			outputByteNumber = 0;
 			fseek(inputFilePointer, 0x150, SEEK_SET);
 
-			for (byteNumber = 0; byteNumber < 32; byteNumber++) {
+			for (inputByteNumber = 0; inputByteNumber < 32; inputByteNumber++) {
 				byte = getc(inputFilePointer);
 
 				if (byte == ' ' && lastByte == ' ') {
 					continue;
 				}
 
-				outputFilename[byteNumber] = byte;
+				outputFilename[outputByteNumber] = byte;
+				outputByteNumber++;
 				lastByte = byte;
 			}
 
