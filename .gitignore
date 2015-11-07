@@ -1,5 +1,6 @@
 *.bin
 *.gb
+*.smc
 *.smd
 bin-rename
 gb-rename

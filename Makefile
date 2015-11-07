@@ -14,6 +14,10 @@ gb-rename:
 	gcc gb-rename.c -o gb-rename
 	./gb-rename *.gb *.GB
 
+smc-rename:
+	gcc smc-rename.c -o smc-rename
+	./smc-rename *.smc *.SMC
+
 smd-to-bin:
 	gcc smd-to-bin.c -o smd-to-bin
 	./smd-to-bin *.smd *.SMD
