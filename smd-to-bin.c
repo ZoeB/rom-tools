@@ -1,3 +1,10 @@
+/*
+ * Mega Drive / Genesis SMD to ROM converter
+ * by Zoe Blade, 2015
+ * Based heavily on Bart Trzynadlowski's GROM Version 0.75
+ * Public domain
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
