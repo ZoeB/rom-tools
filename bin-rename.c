@@ -36,18 +36,43 @@ int main(int argc, char *argv[])
 			for (inputByteNumber = 0; inputByteNumber < 32; inputByteNumber++) {
 				byte = getc(inputFilePointer);
 
-				if (byte == ' ') {
-					byte = '-';
-				}
-
-				if (byte >= 'A' && byte <= 'Z') {
-					/* Make names lowercase */
+				if (byte == '\0') {
+					break;
+				} else if (byte >= 'A' && byte <= 'Z') {
+					/* Make uppercase letters lowercase */
 					byte += 0x20;
-				}
+				} else if (byte >= 'a' && byte <= 'z') {
+					/* Leave lowercase letters alone */
+				} else if (byte >= '0' && byte <= '9') {
+					/* Leave numbers alone */
+				} else if (byte == '&') {
+					/* Spell out ampersands */
 
-				if (byte == '-' && lastByte == '-') {
-					/* Ignore multiple spaces in a row */
-					continue;
+					if (lastByte == '-') {
+						outputFilename[outputByteNumber] = 'a';
+						outputByteNumber++;
+						outputFilename[outputByteNumber] = 'n';
+						outputByteNumber++;
+						byte = 'd';
+					} else {
+						outputFilename[outputByteNumber] = '-';
+						outputByteNumber++;
+						outputFilename[outputByteNumber] = 'a';
+						outputByteNumber++;
+						outputFilename[outputByteNumber] = 'n';
+						outputByteNumber++;
+						outputFilename[outputByteNumber] = 'd';
+						outputByteNumber++;
+						byte = '-';
+					}
+				} else {
+					/* Convert spaces (and everything else) to dashes */
+					byte = '-';
+
+					if (lastByte == '-') {
+						/* Ignore multiple dashes in a row */
+						continue;
+					}
 				}
 
 				outputFilename[outputByteNumber] = byte;

@@ -38,9 +38,7 @@ int main(int argc, char *argv[])
 
 				if (byte == '\0') {
 					break;
-				}
-
-				if (byte >= 'A' && byte <= 'Z') {
+				} else if (byte >= 'A' && byte <= 'Z') {
 					/* Make uppercase letters lowercase */
 					byte += 0x20;
 				} else if (byte >= 'a' && byte <= 'z') {
