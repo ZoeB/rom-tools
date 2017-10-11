@@ -37,18 +37,25 @@ int main(int argc, char *argv[])
 				fseek(inputFilePointer, 2, SEEK_CUR); /* For a simple first draft, ignore sector linking for now */
 
 				for (fileNumber = 0; fileNumber < 8; fileNumber++) {
-					for (charNumber = 0; charNumber < 32; charNumber++) {
+					switch (getc(inputFilePointer)) {
+					case 0x82:
+						printf("PRG ");
+						break;
+					}
+
+					fseek(inputFilePointer, 2, SEEK_CUR); /* Ignore where the file is */
+
+					for (charNumber = 0; charNumber < 16; charNumber++) {
 						byte = getc(inputFilePointer);
 
-/*
-						if (byte == '\0') {
+						if (byte == 0xa0) {
 							break;
 						}
-*/
 
 						putc(byte, stdout);
 					}
 
+					fseek(inputFilePointer, 13, SEEK_CUR); /* Ignore other metadata */
 					putc('\n', stdout);
 				}
 			}
