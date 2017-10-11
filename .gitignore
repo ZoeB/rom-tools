@@ -1,4 +1,5 @@
 *.bin
+*.d64
 *.gb
 *.smc
 *.smd
