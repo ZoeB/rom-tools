@@ -3,6 +3,7 @@
 *.smc
 *.smd
 bin-rename
+d64ls
 gb-rename
 smc-rename
 smd-to-bin
