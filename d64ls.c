@@ -38,9 +38,30 @@ int main(int argc, char *argv[])
 
 				for (fileNumber = 0; fileNumber < 8; fileNumber++) {
 					switch (getc(inputFilePointer)) {
+					case 0x00:
+						printf("--- ");
+						break;
+
+					case 0x80:
+						printf("DEL ");
+						break;
+
+					case 0x81:
+						printf("SEQ ");
+						break;
+
 					case 0x82:
 						printf("PRG ");
 						break;
+
+					case 0x83:
+						printf("USR ");
+						break;
+
+					case 0x84:
+						printf("REL ");
+						break;
+
 					}
 
 					fseek(inputFilePointer, 2, SEEK_CUR); /* Ignore where the file is */
