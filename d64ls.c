@@ -14,7 +14,8 @@ int main(int argc, char *argv[])
 {
 	FILE      *inputFilePointer;
 	int16_t   byte;
-	int8_t    inputByteNumber;
+	uint8_t    fileNumber;
+	uint8_t    charNumber;
 
 	if (argc == 1) {
 		return 0; /* Only work with named files, not stdin */
@@ -29,16 +30,20 @@ int main(int argc, char *argv[])
 
 			fseek(inputFilePointer, 0x16500, SEEK_SET);
 
-			for (inputByteNumber = 0; inputByteNumber < 32; inputByteNumber++) {
-				byte = getc(inputFilePointer);
+			for (fileNumber = 0; fileNumber < 144; fileNumber++) {
+				for (charNumber = 0; charNumber < 32; charNumber++) {
+					byte = getc(inputFilePointer);
 
 /*
-				if (byte == '\0') {
-					break;
-				}
+					if (byte == '\0') {
+						break;
+					}
 */
 
-				putc(byte, stdout);
+					putc(byte, stdout);
+				}
+
+				putc('\n', stdout);
 			}
 
 			fclose(inputFilePointer);
