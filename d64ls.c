@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define SECTOR 256 /* Each disk sector is 256 bytes long */
+
 int main(int argc, char *argv[])
 {
 	FILE      *inputFilePointer;
@@ -28,7 +30,7 @@ int main(int argc, char *argv[])
 				continue;
 			}
 
-			fseek(inputFilePointer, 0x16500, SEEK_SET);
+			fseek(inputFilePointer, 357 * SECTOR, SEEK_SET); /* Skip first 357 sectors */
 
 			for (fileNumber = 0; fileNumber < 144; fileNumber++) {
 				for (charNumber = 0; charNumber < 32; charNumber++) {
