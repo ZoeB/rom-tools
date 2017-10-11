@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
 	uint8_t    fileNumber;
 	uint8_t    fileType;
 	uint8_t    charNumber;
+	uint8_t    filenameSize;
 
 	if (argc == 1) {
 		return 0; /* Only work with named files, not stdin */
@@ -40,18 +41,22 @@ int main(int argc, char *argv[])
 				for (fileNumber = 0; fileNumber < 8; fileNumber++) {
 					fileType = getc(inputFilePointer);
 					fseek(inputFilePointer, 2, SEEK_CUR); /* Ignore where the file is */
+					filenameSize = 0;
 
 					for (charNumber = 0; charNumber < 16; charNumber++) {
 						byte = getc(inputFilePointer);
 
-						if (byte == 0x00 || byte == 0xa0) {
-							putc(' ', stdout);
-						} else {
+						if (byte != 0x00 && byte != 0xa0) {
 							putc(byte, stdout);
+							filenameSize++;
 						}
 					}
 
 					fseek(inputFilePointer, 13, SEEK_CUR); /* Ignore other metadata */
+
+					for (charNumber = filenameSize; charNumber < 16; charNumber++) {
+						putc(' ', stdout);
+					}
 
 					switch (fileType) {
 					case 0x00:
