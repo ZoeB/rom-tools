@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
 {
 	FILE      *inputFilePointer;
 	int16_t   byte;
+	uint8_t    sectorNumber;
 	uint8_t    fileNumber;
 	uint8_t    charNumber;
 
@@ -32,20 +33,24 @@ int main(int argc, char *argv[])
 
 			fseek(inputFilePointer, 358 * SECTOR, SEEK_SET); /* Skip first 358 sectors */
 
-			for (fileNumber = 0; fileNumber < 144; fileNumber++) {
-				for (charNumber = 0; charNumber < 32; charNumber++) {
-					byte = getc(inputFilePointer);
+			for (sectorNumber = 0; sectorNumber < 18; sectorNumber++) {
+				fseek(inputFilePointer, 2, SEEK_CUR); /* For a simple first draft, ignore sector linking for now */
+
+				for (fileNumber = 0; fileNumber < 8; fileNumber++) {
+					for (charNumber = 0; charNumber < 32; charNumber++) {
+						byte = getc(inputFilePointer);
 
 /*
-					if (byte == '\0') {
-						break;
-					}
+						if (byte == '\0') {
+							break;
+						}
 */
 
-					putc(byte, stdout);
-				}
+						putc(byte, stdout);
+					}
 
-				putc('\n', stdout);
+					putc('\n', stdout);
+				}
 			}
 
 			fclose(inputFilePointer);
