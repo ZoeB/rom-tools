@@ -69,11 +69,9 @@ int main(int argc, char *argv[])
 					for (charNumber = 0; charNumber < 16; charNumber++) {
 						byte = getc(inputFilePointer);
 
-						if (byte == 0xa0) {
-							break;
+						if (byte != 0xa0) {
+							putc(byte, stdout);
 						}
-
-						putc(byte, stdout);
 					}
 
 					fseek(inputFilePointer, 13, SEEK_CUR); /* Ignore other metadata */
