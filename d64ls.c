@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 				continue;
 			}
 
-			fseek(inputFilePointer, 357 * SECTOR, SEEK_SET); /* Skip first 357 sectors */
+			fseek(inputFilePointer, 358 * SECTOR, SEEK_SET); /* Skip first 358 sectors */
 
 			for (fileNumber = 0; fileNumber < 144; fileNumber++) {
 				for (charNumber = 0; charNumber < 32; charNumber++) {
