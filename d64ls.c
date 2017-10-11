@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
 	int16_t   byte;
 	uint8_t    sectorNumber;
 	uint8_t    fileNumber;
+	uint8_t    fileType;
 	uint8_t    charNumber;
 
 	if (argc == 1) {
@@ -37,45 +38,47 @@ int main(int argc, char *argv[])
 				fseek(inputFilePointer, 2, SEEK_CUR); /* For a simple first draft, ignore sector linking for now */
 
 				for (fileNumber = 0; fileNumber < 8; fileNumber++) {
-					switch (getc(inputFilePointer)) {
-					case 0x00:
-						printf("--- ");
-						break;
-
-					case 0x80:
-						printf("DEL ");
-						break;
-
-					case 0x81:
-						printf("SEQ ");
-						break;
-
-					case 0x82:
-						printf("PRG ");
-						break;
-
-					case 0x83:
-						printf("USR ");
-						break;
-
-					case 0x84:
-						printf("REL ");
-						break;
-
-					}
-
+					fileType = getc(inputFilePointer);
 					fseek(inputFilePointer, 2, SEEK_CUR); /* Ignore where the file is */
 
 					for (charNumber = 0; charNumber < 16; charNumber++) {
 						byte = getc(inputFilePointer);
 
-						if (byte != 0x00 && byte != 0xa0) {
+						if (byte == 0x00 || byte == 0xa0) {
+							putc(' ', stdout);
+						} else {
 							putc(byte, stdout);
 						}
 					}
 
 					fseek(inputFilePointer, 13, SEEK_CUR); /* Ignore other metadata */
-					putc('\n', stdout);
+
+					switch (fileType) {
+					case 0x00:
+						printf(" ---\n");
+						break;
+
+					case 0x80:
+						printf(" DEL\n");
+						break;
+
+					case 0x81:
+						printf(" SEQ\n");
+						break;
+
+					case 0x82:
+						printf(" PRG\n");
+						break;
+
+					case 0x83:
+						printf(" USR\n");
+						break;
+
+					case 0x84:
+						printf(" REL\n");
+						break;
+
+					}
 				}
 			}
 
