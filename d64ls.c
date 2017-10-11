@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 					for (charNumber = 0; charNumber < 16; charNumber++) {
 						byte = getc(inputFilePointer);
 
-						if (byte != 0xa0) {
+						if (byte != 0x00 && byte != 0xa0) {
 							putc(byte, stdout);
 						}
 					}
