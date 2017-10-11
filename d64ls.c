@@ -54,6 +54,11 @@ int main(int argc, char *argv[])
 
 					fseek(inputFilePointer, 13, SEEK_CUR); /* Ignore other metadata */
 
+					/* Ignore empty files */
+					if (fileType == 0x00 && filenameSize == 0) {
+						break;
+					}
+
 					for (charNumber = filenameSize; charNumber < 16; charNumber++) {
 						putc(' ', stdout);
 					}
