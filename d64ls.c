@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
 	int16_t   byte;
 	uint8_t    sectorNumber;
 	uint8_t    fileNumber;
+	uint16_t   fileSize;
 	uint8_t    fileType;
 	uint8_t    charNumber;
 	uint8_t    filenameSize;
@@ -52,40 +53,49 @@ int main(int argc, char *argv[])
 						}
 					}
 
-					fseek(inputFilePointer, 13, SEEK_CUR); /* Ignore other metadata */
+					fseek(inputFilePointer, 9, SEEK_CUR); /* Ignore other metadata */
+
+					fileSize = getc(inputFilePointer);
+					fileSize += getc(inputFilePointer) * 256;
+
+					fseek(inputFilePointer, 2, SEEK_CUR); /* Ignore hopefully-blank bytes */
 
 					/* Ignore empty files */
 					if (fileType == 0x00 && filenameSize == 0) {
 						break;
 					}
 
+					/* Print the file's details out to stdout */
+
 					for (charNumber = filenameSize; charNumber < 16; charNumber++) {
 						putc(' ', stdout);
 					}
 
+					printf(" %i ", fileSize);
+
 					switch (fileType) {
 					case 0x00:
-						printf(" ---\n");
+						printf("---\n");
 						break;
 
 					case 0x80:
-						printf(" DEL\n");
+						printf("DEL\n");
 						break;
 
 					case 0x81:
-						printf(" SEQ\n");
+						printf("SEQ\n");
 						break;
 
 					case 0x82:
-						printf(" PRG\n");
+						printf("PRG\n");
 						break;
 
 					case 0x83:
-						printf(" USR\n");
+						printf("USR\n");
 						break;
 
 					case 0x84:
-						printf(" REL\n");
+						printf("REL\n");
 						break;
 
 					}
