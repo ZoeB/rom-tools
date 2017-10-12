@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 					fseek(inputFilePointer, 9, SEEK_CUR); /* Ignore other metadata */
 
 					fileSize = getc(inputFilePointer);
-					fileSize += getc(inputFilePointer) * 256;
+					fileSize += getc(inputFilePointer) << 8;
 
 					fseek(inputFilePointer, 2, SEEK_CUR); /* Ignore hopefully-blank bytes */
 
