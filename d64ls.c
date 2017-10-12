@@ -71,34 +71,34 @@ int main(int argc, char *argv[])
 						putc(' ', stdout);
 					}
 
-					printf(" %i ", fileSize);
-
 					switch (fileType) {
 					case 0x00:
-						printf("---\n");
+						printf(" ---");
 						break;
 
 					case 0x80:
-						printf("DEL\n");
+						printf(" DEL");
 						break;
 
 					case 0x81:
-						printf("SEQ\n");
+						printf(" SEQ");
 						break;
 
 					case 0x82:
-						printf("PRG\n");
+						printf(" PRG");
 						break;
 
 					case 0x83:
-						printf("USR\n");
+						printf(" USR");
 						break;
 
 					case 0x84:
-						printf("REL\n");
+						printf(" REL");
 						break;
 
 					}
+
+					printf(" %i\n", fileSize);
 				}
 			}
 
