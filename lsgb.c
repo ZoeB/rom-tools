@@ -6,16 +6,30 @@
 #include <string.h>
 
 char title[16] = "                ";
+char cartridgeType = '\0';
 
 void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
 	fseek(inputFilePointer, 0x134, SEEK_SET);
 	fread(title, 16, 1, inputFilePointer);
+	fseek(inputFilePointer, 0x147, SEEK_SET);
+	cartridgeType = getc(inputFilePointer);
 
 	if (strlen(title) == 0) {
 		strcpy(title, "-");
 	}
 
 	printf("%s\t", title);
+
+	switch (cartridgeType) {
+	case 0x00:
+		printf("ROM\t");
+		break;
+
+	default:
+		printf("-\t");
+		break;
+	}
+
 	return;
 }
 
