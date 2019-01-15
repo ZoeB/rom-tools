@@ -3,8 +3,19 @@
 /* See http://gbdev.gg8.se/wiki/articles/The_Cartridge_Header for the spec */
 
 #include <stdio.h>
+#include <string.h>
+
+char title[16] = "                ";
 
 void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
+	fseek(inputFilePointer, 0x134, SEEK_SET);
+	fread(title, 16, 1, inputFilePointer);
+
+	if (strlen(title) == 0) {
+		strcpy(title, "-");
+	}
+
+	printf("%s\t", title);
 	return;
 }
 
