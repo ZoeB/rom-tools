@@ -2,7 +2,7 @@
  * Commodore 1541 D64 dump directory lister
  * by Zoe Blade, 2017
  *
- * Usage: "d64ls *.d64"
+ * Usage: "lsd64 *.d64"
  *
  * Public domain
  */

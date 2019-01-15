@@ -4,7 +4,7 @@
 *.smc
 *.smd
 bin-rename
-d64ls
 gb-rename
+lsd64
 smc-rename
 smd-to-bin
