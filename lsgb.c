@@ -9,7 +9,7 @@ char title[16] = "                ";
 char cartridgeType = '\0';
 char rom = '\0';
 char ram = '\0';
-char country = '\0';
+char region = '\0';
 
 void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
 	fseek(inputFilePointer, 0x134, SEEK_SET);
@@ -21,7 +21,7 @@ void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
 	fseek(inputFilePointer, 0x149, SEEK_SET);
 	ram = getc(inputFilePointer);
 	fseek(inputFilePointer, 0x14A, SEEK_SET);
-	country = getc(inputFilePointer);
+	region = getc(inputFilePointer);
 
 	if (strlen(title) == 0) {
 		strcpy(title, "-");
@@ -172,7 +172,7 @@ void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
 		printf("   -\t");
 	}
 
-	switch (country) {
+	switch (region) {
 	case 0x00:
 		printf("JP\t");
 		break;
@@ -202,7 +202,7 @@ int main(int argc, char *argv[]) {
 		printf("BAT\t");
 		printf("ROM\t");
 		printf("RAM\t");
-		printf("LC\t"); /* Location/region/country */
+		printf("RG\t"); /* Region */
 		printf("\n");
 
 		while (--argc > 0) {
