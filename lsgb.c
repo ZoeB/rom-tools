@@ -10,6 +10,8 @@ char cartridgeType = '\0';
 char rom = '\0';
 char ram = '\0';
 char region = '\0';
+int headerChecksum = '\0';
+int globalChecksum = 0;
 
 void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
 	fseek(inputFilePointer, 0x134, SEEK_SET);
@@ -22,6 +24,8 @@ void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
 	ram = getc(inputFilePointer);
 	fseek(inputFilePointer, 0x14A, SEEK_SET);
 	region = getc(inputFilePointer);
+	fseek(inputFilePointer, 0x14D, SEEK_SET);
+	headerChecksum = getc(inputFilePointer);
 
 	if (strlen(title) == 0) {
 		strcpy(title, "-");
@@ -185,6 +189,7 @@ void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
 		printf("--\t");
 	}
 
+	printf("%02X\t", headerChecksum);
 	printf("\n");
 	return;
 }
@@ -203,6 +208,7 @@ int main(int argc, char *argv[]) {
 		printf("ROM\t");
 		printf("RAM\t");
 		printf("RG\t"); /* Region */
+		printf("CH\t");
 		printf("\n");
 
 		while (--argc > 0) {
