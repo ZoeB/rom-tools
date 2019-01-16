@@ -213,13 +213,13 @@ int main(int argc, char *argv[]) {
 		printf("Title\t");
 		printf("MBC\t");
 		printf("RAM\t");
-		printf("BAT\t");
+		printf("Bat\t");
 		printf("ROM\t");
 		printf("RAM\t");
-		printf("RG\t"); /* Region */
-		printf("Vr\t");
-		printf("CH\t");
-		printf("GLCH\t");
+		printf("Rg\t"); /* Region */
+		printf("Vr\t"); /* Version */
+		printf("Ch\t"); /* Header checksum */
+		printf("GlCh\t"); /* Global checksum */
 		printf("\n");
 
 		while (--argc > 0) {
