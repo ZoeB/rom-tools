@@ -7,12 +7,18 @@
 
 char title[16] = "                ";
 char cartridgeType = '\0';
+char rom = '\0';
+char ram = '\0';
 
 void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
 	fseek(inputFilePointer, 0x134, SEEK_SET);
 	fread(title, 16, 1, inputFilePointer);
 	fseek(inputFilePointer, 0x147, SEEK_SET);
 	cartridgeType = getc(inputFilePointer);
+	fseek(inputFilePointer, 0x148, SEEK_SET);
+	rom = getc(inputFilePointer);
+	fseek(inputFilePointer, 0x149, SEEK_SET);
+	ram = getc(inputFilePointer);
 
 	if (strlen(title) == 0) {
 		strcpy(title, "-");
@@ -91,7 +97,47 @@ void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
 
 	default:
 		printf("-\t-\t-\t");
+	}
+
+	switch (cartridgeType) {
+	case 0x00:
+		printf(" 32K\t");
 		break;
+
+	case 0x01:
+		printf(" 64K\t");
+		break;
+
+	case 0x02:
+		printf("128K\t");
+		break;
+
+	case 0x03:
+		printf("256K\t");
+		break;
+
+	case 0x04:
+		printf("512K\t");
+		break;
+
+	case 0x05:
+		printf("  1M\t");
+		break;
+
+	case 0x06:
+		printf("  2M\t");
+		break;
+
+	case 0x07:
+		printf("  4M\t");
+		break;
+
+	case 0x08:
+		printf("  8M\t");
+		break;
+
+	default:
+		printf("   -\t");
 	}
 
 	printf("\n");
@@ -109,6 +155,7 @@ int main(int argc, char *argv[]) {
 		printf("MBC\t");
 		printf("RAM\t");
 		printf("BAT\t");
+		printf("ROM\t");
 		printf("\n");
 
 		while (--argc > 0) {
