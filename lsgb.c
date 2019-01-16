@@ -26,6 +26,10 @@ void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
 	region = getc(inputFilePointer);
 	fseek(inputFilePointer, 0x14D, SEEK_SET);
 	headerChecksum = getc(inputFilePointer);
+	fseek(inputFilePointer, 0x14E, SEEK_SET);
+	globalChecksum = getc(inputFilePointer) << 8;
+	fseek(inputFilePointer, 0x14F, SEEK_SET);
+	globalChecksum += getc(inputFilePointer);
 
 	if (strlen(title) == 0) {
 		strcpy(title, "-");
@@ -190,6 +194,7 @@ void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
 	}
 
 	printf("%02X\t", headerChecksum);
+	printf("%04X\t", globalChecksum);
 	printf("\n");
 	return;
 }
@@ -209,6 +214,7 @@ int main(int argc, char *argv[]) {
 		printf("RAM\t");
 		printf("RG\t"); /* Region */
 		printf("CH\t");
+		printf("GLCH\t");
 		printf("\n");
 
 		while (--argc > 0) {
