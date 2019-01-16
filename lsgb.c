@@ -45,6 +45,50 @@ void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
 		printf("MBC2\t-\tBAT\t");
 		break;
 
+	case 0x08:
+		printf("NONE\tRAM\t-\t");
+		break;
+
+	case 0x09:
+		printf("NONE\tRAM\tBAT\t");
+		break;
+
+	case 0x0B:
+		printf("MMM1\t-\t-\t");
+		break;
+
+	case 0x0C:
+		printf("MMM1\tRAM\t-\t");
+		break;
+
+	case 0x0D:
+		printf("MMM1\tRAM\tBAT\t");
+		break;
+
+	case 0x11:
+		printf("MBC3\t-\t-\t");
+		break;
+
+	case 0x12:
+		printf("MBC3\tRAM\t-\t");
+		break;
+
+	case 0x13:
+		printf("MBC3\tRAM\tBAT\t");
+		break;
+
+	case 0x19:
+		printf("MBC5\t-\t-\t");
+		break;
+
+	case 0x1A:
+		printf("MBC5\tRAM\t-\t");
+		break;
+
+	case 0x1B:
+		printf("MBC5\tRAM\tBAT\t");
+		break;
+
 	default:
 		printf("-\t-\t-\t");
 		break;
