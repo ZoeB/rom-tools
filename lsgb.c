@@ -22,7 +22,7 @@ void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
 
 	switch (cartridgeType) {
 	case 0x00:
-		printf("ROM\t-\t-\t");
+		printf("NONE\t-\t-\t");
 		break;
 
 	case 0x01:
@@ -50,6 +50,7 @@ void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
 		break;
 	}
 
+	printf("\n");
 	return;
 }
 
@@ -59,6 +60,13 @@ int main(int argc, char *argv[]) {
 	if (argc == 1) {
 		return 0; /* Only work with named files, not stdin */
 	} else {
+		printf("File\t");
+		printf("Title\t");
+		printf("MBC\t");
+		printf("RAM\t");
+		printf("BAT\t");
+		printf("\n");
+
 		while (--argc > 0) {
 			filePointer = fopen(*++argv, "r");
 
