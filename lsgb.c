@@ -22,11 +22,31 @@ void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
 
 	switch (cartridgeType) {
 	case 0x00:
-		printf("ROM\t");
+		printf("ROM\t-\t-\t");
+		break;
+
+	case 0x01:
+		printf("MBC1\t-\t-\t");
+		break;
+
+	case 0x02:
+		printf("MBC1\tRAM\t-\t");
+		break;
+
+	case 0x03:
+		printf("MBC1\tRAM\tBAT\t");
+		break;
+
+	case 0x05:
+		printf("MBC2\t-\t-\t");
+		break;
+
+	case 0x06:
+		printf("MBC2\t-\tBAT\t");
 		break;
 
 	default:
-		printf("-\t");
+		printf("-\t-\t-\t");
 		break;
 	}
 
