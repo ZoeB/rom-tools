@@ -99,7 +99,7 @@ void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
 		printf("-\t-\t-\t");
 	}
 
-	switch (cartridgeType) {
+	switch (rom) {
 	case 0x00:
 		printf(" 32K\t");
 		break;
@@ -140,6 +140,35 @@ void describeFile(FILE *inputFilePointer, FILE *outputFilePointer) {
 		printf("   -\t");
 	}
 
+	switch (ram) {
+	case 0x00:
+		printf("NONE\t");
+		break;
+
+	case 0x01:
+		printf("  2K\t");
+		break;
+
+	case 0x02:
+		printf("  8K\t");
+		break;
+
+	case 0x03:
+		printf(" 32K\t");
+		break;
+
+	case 0x04:
+		printf("128K\t");
+		break;
+
+	case 0x05:
+		printf(" 64K\t");
+		break;
+
+	default:
+		printf("   -\t");
+	}
+
 	printf("\n");
 	return;
 }
@@ -156,6 +185,7 @@ int main(int argc, char *argv[]) {
 		printf("RAM\t");
 		printf("BAT\t");
 		printf("ROM\t");
+		printf("RAM\t");
 		printf("\n");
 
 		while (--argc > 0) {
