@@ -1,9 +1,11 @@
 *.bin
+*.d64
 *.gb
 *.smc
 *.smd
 bin-rename
 gb-rename
+lsd64
 lsgb
 smc-rename
 smd-to-bin
