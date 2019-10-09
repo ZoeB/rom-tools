@@ -34,10 +34,12 @@ for ourMachineName in os.listdir('roms'):
 			romData = romFile.read()
 			ourHash = hashlib.sha1(romData).hexdigest()
 
+			# Try to find its match...
 			for theirRom in theirRoms:
 				if theirRom.get('sha1') != ourHash:
 					continue
 
+				# ROM match found
 				theirRomName = theirRom.get('name')
 
 				if theirRomName == ourRomName:
@@ -47,5 +49,6 @@ for ourMachineName in os.listdir('roms'):
 
 				break
 
+			# ROM match not found
 			if theirRom.get('sha1') != ourHash:
 				print('Obsolete')
