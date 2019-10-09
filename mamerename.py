@@ -8,6 +8,14 @@
 # for the given version of MAME
 
 import xml.etree.ElementTree as ET
-tree = ET.parse('mame.xml')
-root = tree.getroot()
+from os import listdir
+
+# Parse XML file
+# tree = ET.parse('mame.xml')
+# root = tree.getroot()
+
+# For each machine in the roms dir...
+machines = listdir('roms')
+print(machines)
+
 exit()
