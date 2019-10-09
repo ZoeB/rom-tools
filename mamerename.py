@@ -22,7 +22,9 @@ for ourMachine in listdir('roms'):
 			continue
 
 		theirRoms = theirMachine.iter('rom')
+		ourRoms = listdir(os.path.join('roms', ourMachine))
 		print(theirRoms)
+		print(ourRoms)
 		exit()
 
 exit()
