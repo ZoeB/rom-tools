@@ -21,7 +21,8 @@ for ourMachine in listdir('roms'):
 		if theirMachine.get('name') != ourMachine:
 			continue
 
-		print(theirMachine)
+		theirRoms = theirMachine.iter('rom')
+		print(theirRoms)
 		exit()
 
 exit()
