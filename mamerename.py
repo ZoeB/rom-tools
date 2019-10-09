@@ -9,8 +9,12 @@
 
 import hashlib # For calculating SHA1 digests
 import os # For directory listings
-import termcolor
 import xml.etree.ElementTree as ET
+
+GREEN = '\033[32m'
+YELLOW = '\033[33m'
+RED = '\033[31m'
+OFF = '\033[0m'
 
 # Parse XML file
 tree = ET.parse('mame.xml')
@@ -44,12 +48,12 @@ for ourMachineName in os.listdir('roms'):
 				theirRomName = theirRom.get('name')
 
 				if theirRomName == ourRomName:
-					print(termcolor.colored('OK', 'green'))
+					print(GREEN + 'OK' + OFF)
 				else:
-					print(termcolor.colored('Rename ' + ourRomName + ' to ' + theirRomName, 'yellow'))
+					print(YELLOW + 'Rename ' + ourRomName + ' to ' + theirRomName + OFF)
 
 				break
 
 			# ROM match not found
 			if theirRom.get('sha1') != ourHash:
-				print(termcolor.colored('Obsolete', 'red'))
+				print(RED + 'Obsolete' + OFF)
