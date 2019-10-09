@@ -17,6 +17,8 @@ root = tree.getroot()
 # For each machine in the roms dir...
 for ourMachine in listdir('roms'):
 	print ourMachine
+
+	# Try to find its match...
 	for theirMachine in root.iter('machine'):
 		if theirMachine.get('name') != ourMachine:
 			continue
