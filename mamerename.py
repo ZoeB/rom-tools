@@ -24,19 +24,23 @@ for ourMachineName in os.listdir('roms'):
 		if theirMachine.get('name') != ourMachineName:
 			continue
 
+		# Machine match found
 		theirRoms = theirMachine.iter('rom')
+
+		# For each ROM in the machine's dir...
 		for ourRomName in os.listdir(os.path.join('roms', ourMachineName)):
 			print ' ' + ourRomName
 			romFile = open(os.path.join('roms', ourMachineName, ourRomName), 'rb')
 			romData = romFile.read()
 			ourHash = hashlib.sha1(romData).hexdigest()
-			print(ourHash)
 
 			for theirRom in theirRoms:
 				if theirRom.get('sha1') != ourHash:
 					continue
 
 				theirRomName = theirRom.get('name')
-				print(ourRomName + ' ' + theirRomName)
-				exit()
-exit()
+
+				if theirRomName == ourRomName:
+					print('OK')
+				else:
+					print('Rename ' + ourRomName + ' to ' + theirRomName)
