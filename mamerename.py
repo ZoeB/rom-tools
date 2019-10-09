@@ -44,3 +44,8 @@ for ourMachineName in os.listdir('roms'):
 					print('OK')
 				else:
 					print('Rename ' + ourRomName + ' to ' + theirRomName)
+
+				break
+
+			if theirRom.get('sha1') != ourHash:
+				print('Obsolete')
