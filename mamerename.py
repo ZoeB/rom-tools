@@ -8,14 +8,14 @@
 # for the given version of MAME
 
 import xml.etree.ElementTree as ET
-from os import listdir
+import os
 
 # Parse XML file
 tree = ET.parse('mame.xml')
 root = tree.getroot()
 
 # For each machine in the roms dir...
-for ourMachine in listdir('roms'):
+for ourMachine in os.listdir('roms'):
 	print ourMachine
 
 	# Try to find its match...
@@ -24,7 +24,7 @@ for ourMachine in listdir('roms'):
 			continue
 
 		theirRoms = theirMachine.iter('rom')
-		ourRoms = listdir(os.path.join('roms', ourMachine))
+		ourRoms = os.listdir(os.path.join('roms', ourMachine))
 		print(theirRoms)
 		print(ourRoms)
 		exit()
