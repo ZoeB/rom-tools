@@ -7,6 +7,8 @@
 # Warns which ROM files need to be renamed or replaced
 # for the given version of MAME
 
+# TODO: in the other direction, warn which ROMs are missing
+
 import hashlib # For calculating SHA1 digests
 import os # For directory listings
 import xml.etree.ElementTree as ET
