@@ -34,7 +34,6 @@ for ourMachineName in os.listdir('roms'):
 
 		# For each ROM in the machine's dir...
 		for ourRomName in os.listdir(os.path.join('roms', ourMachineName)):
-			print(' ' + ourRomName)
 			romFile = open(os.path.join('roms', ourMachineName, ourRomName), 'rb')
 			romData = romFile.read()
 			ourHash = hashlib.sha1(romData).hexdigest()
@@ -48,12 +47,12 @@ for ourMachineName in os.listdir('roms'):
 				theirRomName = theirRom.get('name')
 
 				if theirRomName == ourRomName:
-					print(GREEN + 'OK' + OFF)
+					print(GREEN + ' ' + ourRomName + ' OK' + OFF)
 				else:
-					print(YELLOW + 'Rename ' + ourRomName + ' to ' + theirRomName + OFF)
+					print(YELLOW + ' ' + ourRomName + ' -> ' + theirRomName + OFF)
 
 				break
 
 			# ROM match not found
 			if theirRom.get('sha1') != ourHash:
-				print(RED + 'Obsolete' + OFF)
+				print(RED + ' ' + ourRomName + ' obsolete' + OFF)
