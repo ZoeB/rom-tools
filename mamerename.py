@@ -7,6 +7,7 @@
 # Warns which ROM files need to be renamed or replaced
 # for the given version of MAME
 
+# TODO: skip .hidden and .chd files
 # TODO: in the other direction, warn which ROMs are missing
 
 import hashlib # For calculating SHA1 digests
