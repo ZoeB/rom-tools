@@ -11,11 +11,17 @@ import xml.etree.ElementTree as ET
 from os import listdir
 
 # Parse XML file
-# tree = ET.parse('mame.xml')
-# root = tree.getroot()
+tree = ET.parse('mame.xml')
+root = tree.getroot()
 
 # For each machine in the roms dir...
-machines = listdir('roms')
-print(machines)
+for ourMachine in listdir('roms'):
+	print ourMachine
+	for theirMachine in root.iter('machine'):
+		if theirMachine.get('name') != ourMachine:
+			continue
+
+		print(theirMachine)
+		exit()
 
 exit()
