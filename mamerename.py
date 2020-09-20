@@ -24,7 +24,7 @@ tree = ET.parse('mame.xml')
 root = tree.getroot()
 
 # For each machine in the roms dir...
-for ourMachineName in os.listdir('roms'):
+for ourMachineName in os.listdir('/Volumes/MAME/roms'):
 	print(ourMachineName)
 
 	# Try to find its match...
