@@ -30,24 +30,24 @@ rompath = '/Volumes/MAME/roms'
 tree = ET.parse('mame.xml')
 root = tree.getroot()
 
-# For each machine in our roms dir...
+# For each machine in the roms dir...
 for ourMachineName in os.listdir(rompath):
 	print(ourMachineName)
 
-	# ...try to find their match
+	# Try to find its match...
 	for theirMachine in root.iter('machine'):
 		if theirMachine.get('name') != ourMachineName:
 			continue
 
 		# Machine match found
 
-		# For each ROM in our machine's dir...
+		# For each ROM in the machine's dir...
 		for ourRomName in os.listdir(os.path.join(rompath, ourMachineName)):
 			romFile = open(os.path.join(rompath, ourMachineName, ourRomName), 'rb')
 			romData = romFile.read()
 			ourHash = hashlib.sha1(romData).hexdigest()
 
-			# ...try to find their match
+			# Try to find its match...
 			for theirRom in theirMachine.iter('rom'):
 				if theirRom.get('sha1') != ourHash:
 					continue
@@ -65,19 +65,3 @@ for ourMachineName in os.listdir(rompath):
 			# ROM match not found
 			if theirRom.get('sha1') != ourHash:
 				print(RED + ' ' + ourRomName + ' obsolete' + OFF)
-
-		# For each ROM their machine should have...
-		for theirRom in theirMachine.iter('rom'):
-			theirHash = theirRom.get('sha1')
-			theirRomName = theirRom.get('name')
-
-			# ...try to find our match
-			for ourRomName in os.listdir(os.path.join(rompath, ourMachineName)):
-				romFile = open(os.path.join(rompath, ourMachineName, ourRomName), 'rb')
-				romData = romFile.read()
-				ourHash = hashlib.sha1(romData).hexdigest()
-
-				if ourHash == theirHash:
-					break
-
-			print(RED + ' ' + theirRomName + ' missing' + OFF)
