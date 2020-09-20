@@ -19,12 +19,14 @@ YELLOW = '\033[33m'
 RED = '\033[31m'
 OFF = '\033[0m'
 
+rompath = '/Volumes/MAME/roms'
+
 # Parse XML file
 tree = ET.parse('mame.xml')
 root = tree.getroot()
 
 # For each machine in the roms dir...
-for ourMachineName in os.listdir('/Volumes/MAME/roms'):
+for ourMachineName in os.listdir(rompath):
 	print(ourMachineName)
 
 	# Try to find its match...
@@ -36,8 +38,8 @@ for ourMachineName in os.listdir('/Volumes/MAME/roms'):
 		theirRoms = theirMachine.iter('rom')
 
 		# For each ROM in the machine's dir...
-		for ourRomName in os.listdir(os.path.join('roms', ourMachineName)):
-			romFile = open(os.path.join('roms', ourMachineName, ourRomName), 'rb')
+		for ourRomName in os.listdir(os.path.join(rompath, ourMachineName)):
+			romFile = open(os.path.join(rompath, ourMachineName, ourRomName), 'rb')
 			romData = romFile.read()
 			ourHash = hashlib.sha1(romData).hexdigest()
 
