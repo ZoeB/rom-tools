@@ -59,6 +59,7 @@ for ourMachineName in os.listdir(rompath):
 					print(GREEN + ' ' + ourRomName + ' OK' + OFF)
 				else:
 					print(YELLOW + ' ' + ourRomName + ' -> ' + theirRomName + OFF)
+					os.rename(os.path.join(rompath, ourMachineName, ourRomName), os.path.join(rompath, ourMachineName, theirRomName))
 
 				break
 
