@@ -40,7 +40,6 @@ for ourMachineName in os.listdir(rompath):
 			continue
 
 		# Machine match found
-		theirRoms = theirMachine.iter('rom')
 
 		# For each ROM in the machine's dir...
 		for ourRomName in os.listdir(os.path.join(rompath, ourMachineName)):
@@ -49,7 +48,7 @@ for ourMachineName in os.listdir(rompath):
 			ourHash = hashlib.sha1(romData).hexdigest()
 
 			# Try to find its match...
-			for theirRom in theirRoms:
+			for theirRom in theirMachine.iter('rom'):
 				if theirRom.get('sha1') != ourHash:
 					print(ourRomName + ' != ' + theirRom.get('name')) # This reveals the problem: it's not resetting to the start of the list each time, on line 52.  I think I need to choose between iter() and for-in.
 					continue
