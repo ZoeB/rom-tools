@@ -9,6 +9,7 @@
 
 # TODO: skip .hidden and .chd files
 # TODO: in the other direction, warn which ROMs are missing
+# TODO: make this work across directories, in case a file has been moved to another dir.  Rename it, don't delete it.
 
 import hashlib # For calculating SHA1 digests
 import os # For directory listings
