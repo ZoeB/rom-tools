@@ -51,7 +51,7 @@ for ourMachineName in os.listdir(rompath):
 			# Try to find its match...
 			for theirRom in theirRoms:
 				if theirRom.get('sha1') != ourHash:
-					print(ourRomName + ' != ' + theirRom.get('name')) # This reveals the problem: it's not resetting to the start of the list each time, on line 52
+					print(ourRomName + ' != ' + theirRom.get('name')) # This reveals the problem: it's not resetting to the start of the list each time, on line 52.  I think I need to choose between iter() and for-in.
 					continue
 
 				# ROM match found
