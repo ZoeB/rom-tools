@@ -9,7 +9,7 @@
 
 # TODO: skip .hidden and .chd files
 # TODO: in the other direction, warn which ROMs are missing
-# TODO: make this work across directories, in case a file has been moved to another dir.  Rename it, don't delete it.
+# TODO: make this work across directories, in case a file has been moved to another dir.  Rename it, don't delete it.  Note that one ROM might appear in multiple directories, so don't create new directories and half-setup all the clones.  (See 813cecf44bf5464b1aed64b36f5047e4c79ba176, for instance, which currently appears three times in MAME.)  We need three main lists: MAME's ROM hashes, and their multiple full paths (so the path as key); our local file hashes, and their multiple full paths (ditto); and our local directories (machines), so we can ignore hashes that don't belong to them.
 
 import hashlib # For calculating SHA1 digests
 import os # For directory listings
