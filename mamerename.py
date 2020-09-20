@@ -2,18 +2,9 @@
 
 # MAME Rename
 # For Python 3
-# By Zoe Blade, 2019
+# By Zoe Blade, 2019-2020
 
-# Warns which ROM files need to be renamed or replaced
-# for the given version of MAME
-
-# TODO: skip .hidden and .chd files
-# TODO: in the other direction, warn which ROMs are missing
-# TODO: make this work across directories, in case a file has been moved to another dir.  Rename it, don't delete it.  Note that one ROM might appear in multiple directories, so don't create new directories and half-setup all the clones.  (See 813cecf44bf5464b1aed64b36f5047e4c79ba176, for instance, which currently appears three times in MAME.)  We need three main lists: MAME's ROM hashes, and their multiple full paths (so the path as key); our local file hashes, and their multiple full paths (ditto); and our local directories (machines), so we can ignore hashes that don't belong to them.
-
-# Step 1: list our local directories (machines)
-# Step 2: list all our files (ROMs), including their full paths, and their hashes.  This is where we're copying/renaming from.
-# Step 3: list all our locally desired machines' ROMs in MAME, including their full paths, and their hashes.  This is where we're copying/renaming to.
+# Renames ROM files as needed; warns which ROM files need to be replaced
 
 import hashlib # For calculating SHA1 digests
 import os # For directory listings
